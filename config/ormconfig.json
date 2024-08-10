@@ -1,0 +1,10 @@
+{
+    "type": "mysql",
+    "host": "8.130.43.130",
+    "port": 3306,
+    "username": "test01",
+    "password": "StnzkZa3cGXGPKLe_",
+    "database": "test02",
+    "entities": ["src/entity/*.js"],
+    "logging": true
+  }
