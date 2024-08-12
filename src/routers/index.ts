@@ -1,14 +1,15 @@
 /*
  * @Author: haoo
  * @Date: 2024-08-10 16:40:25
- * @LastEditTime: 2024-08-11 19:12:55
+ * @LastEditTime: 2024-08-12 10:30:03
  * @LastEditors: haoo
  * @Description: 路由集合
  * @FilePath: /express/src/routers/index.ts
  */
-import express, { Application, Express } from "express";
+import express, { Express } from "express";
 import path from 'path'
 import userRouters from './module/user'
+import orderRouters from './module/order'
 
 export interface RouterItem {
     method: 'get' | 'post' | 'put' | 'delete';
@@ -25,7 +26,7 @@ const routeBind = (prefix: string, routers: RouterItem[]) => {
 }
 
 
-export default function (app: Express) {
-    // app.use('/api', Router())
-    app.use('/api', routeBind('/user', userRouters))
+export default function (app: Express, prefix = '') {
+    app.use(prefix, routeBind('/user', userRouters))
+    app.use(prefix, routeBind('/order', orderRouters))
 }
