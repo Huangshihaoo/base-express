@@ -1,12 +1,12 @@
 /*
  * @Author: haoo
  * @Date: 2024-08-10 16:40:25
- * @LastEditTime: 2024-08-10 17:30:01
+ * @LastEditTime: 2024-08-14 15:39:34
  * @LastEditors: haoo
  * @Description: 用户表
- * @FilePath: /express/src/entity/user.entity.ts
+ * @FilePath: /express/src/entity/userEntity.ts
  */
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+const { Entity, Column, PrimaryGeneratedColumn } = require("typeorm");
 
 @Entity()
 export class User {

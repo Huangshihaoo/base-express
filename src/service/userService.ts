@@ -1,7 +1,7 @@
 /*
  * @Author: haoo
  * @Date: 2024-08-10 17:57:54
- * @LastEditTime: 2024-08-14 11:45:41
+ * @LastEditTime: 2024-08-14 15:52:41
  * @LastEditors: haoo
  * @Description: 用户数据处理
  * @FilePath: /express/src/service/userService.ts
@@ -11,9 +11,11 @@ import { User } from "../entity/userEntity";
 import Database from "../database";
 
 export class UserService {
-    private userSource = Database.getInstance().dataSource.getRepository(User);
+    // Database.getInstance().dataSource.getRepository(User);
+    private userSource: Repository<User>
     constructor() {
-        // this.userSource =  AppDataSource.getRepository(User);
+        const db = Database.getInstance()
+        this.userSource =  db.dataSource.getRepository(User)
     }
 
     getUserList = async () => {

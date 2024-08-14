@@ -1,24 +1,17 @@
-/*
- * @Author: haoo
- * @Date: 2024-08-14 11:49:10
- * @LastEditTime: 2024-08-14 11:54:58
- * @LastEditors: haoo
- * @Description: 
- * @FilePath: /express/bin/www.ts
- */
-import initApp from '../src/app'
 import http from 'http'
+import initApp from '../src/app'
+import { normalizePort } from '../utils'
 import dotenv from 'dotenv'
+
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` }) // 环境变量
 
-const { PORT } = process.env
-
-async function startApp() {
+async function startServer() {
     const app = await initApp()
-    const serve = http.createServer(app)
-    serve.listen(PORT, () => {
-        console.log(`running port ${PORT} ...`);
+    const server = http.createServer(app)
+    const port = normalizePort(process.env.PORT || '3000')
+    server.listen(port, () => {
+        console.log('server is running at URL_ADDRESS', port)
     })
 }
 
-startApp()
+startServer();
