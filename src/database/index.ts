@@ -1,7 +1,7 @@
 /*
  * @Author: haoo
  * @Date: 2024-08-10 16:54:29
- * @LastEditTime: 2024-08-14 15:51:40
+ * @LastEditTime: 2024-08-14 16:48:01
  * @LastEditors: haoo
  * @Description: 数据库链接文件
  * @FilePath: /express/src/database/index.ts
@@ -11,6 +11,8 @@ import { DataSource } from "typeorm";
 import { Order } from "../entity/orderEntity";
 import { User } from "../entity/userEntity";
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` }) // 环境变量
+
+const entities = [Order, User];
 
 class Database {
     private static instance: Database;
@@ -24,9 +26,7 @@ class Database {
             username: process.env.DB_USER,
             password: process.env.DB_PWD,
             database: process.env.DB_NAME,
-            entities: [
-                Order, User
-            ],
+            entities,
             logging: true,
             synchronize: true,
             connectorPackage: 'mysql2',
@@ -45,6 +45,21 @@ class Database {
             await this.dataSource.initialize();
             console.log('数据库连接已成功初始化');
         }
+    }
+
+    // 测试数据库是否联通
+    public async isConnection() {
+        try {
+            await this.dataSource.query('SELECT 1');
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    // 关闭数据库连接
+    public async close() {
+        await this.dataSource.destroy();
     }
 }
 

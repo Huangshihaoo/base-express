@@ -4,8 +4,8 @@ import { normalizePort } from '../utils'
 import dotenv from 'dotenv'
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` }) // 环境变量
-
-async function startServer() {
+ 
+export async function startServer() {
     const app = await initApp()
     const server = http.createServer(app)
     const port = normalizePort(process.env.PORT || '3000')
