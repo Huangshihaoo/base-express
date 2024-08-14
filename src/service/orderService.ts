@@ -1,20 +1,20 @@
 /*
  * @Author: haoo
  * @Date: 2024-08-10 17:57:54
- * @LastEditTime: 2024-08-12 10:29:16
+ * @LastEditTime: 2024-08-14 11:46:59
  * @LastEditors: haoo
  * @Description: 用户数据处理
  * @FilePath: /express/src/service/orderService.ts
  */
 import { Repository } from "typeorm";
 import { User } from "../entity/userEntity";
-import { AppDataSource } from "../database";
+// import { AppDataSource } from "../database";
 import { Order } from "../entity/orderEntity";
 
 export class OrderService {
     private orderSource: Repository<Order>
     constructor() {
-        this.orderSource = AppDataSource.getRepository(Order);
+        // this.orderSource = AppDataSource.getRepository(Order);
     }
 
     create() {
